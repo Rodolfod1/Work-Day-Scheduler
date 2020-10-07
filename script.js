@@ -31,7 +31,7 @@ function Start(){
         var inp=$("<input type='text' class='form-control list-group-item-primary' placeholder='available time' aria-label='available time' aria-describedby='basic-addon1'>");
         var div3=$("<div class='input-group-append'>");
         var bot=$("<button type='button' class='btn btn-outline-secondary'>").text('Save');
-        //adding a distinctive value so we can manipulate the time block
+        //adding a distinctive value, class and ID so we can manipulate the time block
         bot.attr("Value",ntime.format("h"));
         inp.attr("id","myCls"+ntime.format("h"));
         Spn.attr("id","myId"+ntime.format("h"));
