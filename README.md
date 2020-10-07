@@ -33,23 +33,9 @@
     - As the day goes on and the application is refreshed all colors and attributes are updated:
     ![updatingScheduleImage](Assets/asDayGoesOn.jpg)
 
-* Mobile first approach:
- - Responsive application using bootstrap 4.0
-    - Here is an example of the top three high scores on an iPhone X:
-    ![MobileAppearance](Assets/MobileVersion.jpg)
-
 * To run the application:
   - This application runs as soon it is deployed
   - user needs to interact selecting the time blocks and saving them.
-   
-
-
-* When the quiz ends:
-  - Once any of the conditions, either the questions OR the timer are depleted the user is prompted with a form which includes the score and a submission input for the scores to be recorded for further usage on the leaders board.
-
-    - Image of the submission form:
-    ![ScoreSubmitImage](Assets/mobileDeployment.jpg)    
-
 
 * Style:
 - Dynamically generated time blocks powered by jQuery designed using Bootstrap 4.0 a sober and bold style. 
