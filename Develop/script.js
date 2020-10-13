@@ -47,6 +47,7 @@ function popEmpty(){
         //adding a distinctive value so we can manipulate the time block
         bot.attr("Value",ntime.format("h"));
         inp.attr("id","myCls"+ntime.format("h"));
+        Spn.attr("id","myId"+ntime.format("h"))
         //appending the blocks
         div3.append(bot);
         div2.append(Spn);
@@ -55,23 +56,20 @@ function popEmpty(){
         div1.append(div3);
         ntime=ntime.add(1,'hour');
         $("#main").append(div1)
-
      }
- 
-
-
      $(".btn").on("click",function(){
         Iden=$(this).val();
         writeMem();
-
     });
-
 };
-
 
 function writeMem(){
     var lk=Iden.toString();
     $("#myCls"+lk).removeClass("list-group-item-primary");
+    $("#myCls"+lk).addClass("list-group-item-success");
+    tarea=$("#myCls"+lk).val();
+    hrs=$("#myId"+lk).text();
+    console.log(Tasks);
     // var lk= JSON.stringify("#myCls"+Iden)
     //  $(lk).removeClass("list-group-item-primary");
     //  $(lk).addClass("list-group-item-danger");
