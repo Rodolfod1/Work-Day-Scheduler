@@ -1,9 +1,8 @@
 
 var tarea,hrs
-var Tasks={ Time: hrs, Act: tarea }
-var Ctime,MyTime,IncT,Iden;
-var booking,apmt=[]
-
+var Ctime,MyTime,IncT,Iden
+var Tasks,booking,apmt=[]
+// Staring the script letting ,, execute when ready
 $(document).ready(function(){
     // Parsing for current time
     Ctime=moment();
@@ -14,23 +13,8 @@ $(document).ready(function(){
     console.log(IncT.format("hh:mm a"));
     // to include the date and time on the header
     $("#currentDay").text(Ctime.format("llll"));
-
-  // checking for localStorage content
-    // booking=localStorage.getItem("Clinch");
-    // if(booking===null){ localStorage.setItem("Clinch",JSON.stringify([Tasks]))
         popEmpty();
-    // }
-    // else {
-    //     // if there is data in localStorage then convert boooking into array and assign it to apmt
-    //     apmt=JSON.parse(booking);
-    //     // now we can add the updated array tasks into the apmt
-    //     apmt.push(Tasks);
-
-
-
-    // }
-
-});
+ });
 
 function popEmpty(){
     //this variable will be increasing using the moment method
@@ -48,6 +32,19 @@ function popEmpty(){
         bot.attr("Value",ntime.format("h"));
         inp.attr("id","myCls"+ntime.format("h"));
         Spn.attr("id","myId"+ntime.format("h"))
+// changing attribute for moments in the past ,,if moment is < than current time  then even happened in the past
+//if this happened then change attribute to inactive
+var x=parseInt(ntime.format("H"));  // parsing to integers for the if
+var y =parseInt(Ctime.format("H"));
+ if(x<y){
+        inp.prop("disabled",true);
+        bot.prop("disabled",true);
+     }
+ else if(ntime.format("h")===Ctime.format("h")){
+     /// change class to current time
+     inp.removeClass("list-group-item-primary");
+     inp.addClass("list-group-item-danger");
+ }
         //appending the blocks
         div3.append(bot);
         div2.append(Spn);
@@ -58,24 +55,38 @@ function popEmpty(){
         $("#main").append(div1)
      }
      $(".btn").on("click",function(){
-        Iden=$(this).val();
-        writeMem();
+       Iden=parseInt($(this).val());
+       PrepareWrite();
+      
+
     });
+   
 };
 
-function writeMem(){
-    var lk=Iden.toString();
-    $("#myCls"+lk).removeClass("list-group-item-primary");
-    $("#myCls"+lk).addClass("list-group-item-success");
-    tarea=$("#myCls"+lk).val();
-    hrs=$("#myId"+lk).text();
-    console.log(Tasks);
-    // var lk= JSON.stringify("#myCls"+Iden)
-    //  $(lk).removeClass("list-group-item-primary");
-    //  $(lk).addClass("list-group-item-danger");
+function PrepareWrite() {
+      var lk=Iden.toString();
+     $("#myCls"+lk).removeClass("list-group-item-primary");
+     $("#myCls"+lk).addClass("list-group-item-success");
+     tarea=$("#myCls"+lk).val();
+     hrs=$("#myId"+lk).text();
+     Tasks={ Time: hrs, Act: tarea };
+     writeMem();
+};
 
+ function writeMem() {
+//     //if localStore is empty then stringify Tasks
+     booking=localStorage.getItem("Clinch");
+     if(booking===null){
+         localStorage.setItem("Clinch",JSON.stringify([Tasks]));
+     }
+     else{
+          // if there is data in localStorage then convert boooking into array and assign it to apmt
+         apmt=JSON.parse(booking);
+           // now we can add the updated array tasks into the apmt
+             apmt.push(Tasks);
+             //adding the updating array to our Clinch localStorage
+             localStorage.setItem("Clinch",JSON.stringify(apmt));
+         }
 
-    //  var Act= $("#myCls12").value().trim();
-    // console.log(Act);
-}
+};
 
