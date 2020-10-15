@@ -44,13 +44,6 @@
    
 
 
-* When the quiz ends:
-  - Once any of the conditions, either the questions OR the timer are depleted the user is prompted with a form which includes the score and a submission input for the scores to be recorded for further usage on the leaders board.
-
-    - Image of the submission form:
-    ![ScoreSubmitImage](Assets/mobileDeployment.jpg)    
-
-
 * Style:
 - Dynamically generated time blocks powered by jQuery designed using Bootstrap 4.0 a sober and bold style. 
  
